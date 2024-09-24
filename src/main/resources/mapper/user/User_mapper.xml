@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teampl.stmngsys.user.dao.UserDao">
+
+
+<select id = "selectUserCnt" parameterType="Map" resultType="int">
+/* User_mapper.selectUserCnt */
+	select 
+		COUNT(*) 
+	from tb_user 
+	where USER_ID = #{USER_ID}
+</select>
+<select id = "selectPassword" parameterType="Map" resultType="String">
+/* User_mapper.selectPassword */
+	select PASSWORD from tb_user where USER_ID = #{USER_ID}
+</select>
+<insert id = "createUser" parameterType="Map">
+/* User_mapper.createUser */
+	INSERT INTO tb_user (
+		USER_ID
+		, SCHL_CD
+		, PASSWORD
+		, USER_NM
+		, USER_AGE
+		, USER_TYPE
+		, USER_EMAIL
+		, USER_PHONE
+		, USER_RAOD_ADDR
+		, USER_ADDR_DTL
+	)VALUES(
+		  #{USER_ID}
+		, #{SCHL_CD}
+		, #{PASSWORD}
+		, #{USER_NM}
+		, #{USER_AGE}
+		, #{USER_TYPE}
+		, #{USER_EMAIL}
+		, #{USER_PHONE}
+		, #{USER_RAOD_ADDR}
+		, #{USER_ADDR_DTL}
+	)
+</insert>
+<update id = "updateUserInfo" parameterType="Map">
+/* User_mapper.updateUserInfo */
+	update tb_user set
+	SCHL_CD = #{SCHL_CD}
+	, USER_NM = #{USER_NM}
+	, USER_AGE = #{USER_AGE}
+	, USER_EMAIL = #{USER_EMAIL}
+	, USER_PHONE = #{USER_PHONE}
+	, USER_ROAD_ADDR = #{USER_ROAD_ADDR}
+	, USER_ADDR_DTL = #{USER_ADDR_DTL}
+	where USER_ID = #{USER_ID}
+</update>
+<update id="updateUserAuth" parameterType="Map">
+/* User_mapper.updateUserAuth */
+	update tb_user set
+	AUT_YN = #{AUT_YN}
+	where USER_ID = #{USER_ID}
+</update>
+<update id="updateUserPassword" parameterType="Map">
+/* User_mapper.updateUserInfo */
+	update tb_user set
+	PASSWORD = #{PASSWORD}
+	where USER_ID = #{USER_ID}
+</update>
+<delete id = "deleteUserInfo" parameterType="Map">
+/* User_mapper.deleteUserInfo */
+	delete from tb_user where USER_ID = #{USER_ID}
+</delete>
+
+</mapper>
